@@ -5,12 +5,27 @@ const expressLayouts = require('express-ejs-layouts')
 const pg = require('pg')
 const db = require('./db/index')
 const session = require('express-session')
+const methodOverride = require('method-override')
 const port = process.env.PORT || 3000
 const app = express()
+const indexRouter = require('./routes/index')
+const workoutsRouter = require('./routes/workouts')
 
 
 app.set("view engine", "ejs")
-app.use(expressLayouts)
+
+app.use(express.static('public'))
+
+app.use(express.urlencoded({extended: true}))
+
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 app.use(
     session({
@@ -21,18 +36,13 @@ app.use(
     })
 )
 
-app.get('/', (req, res) => {
-    db.query(`SELECT * FROM workouts;`, (err, dbRes) => {
-        if (err) {
-            console.log(err)
-        }
-        res.render('home', { workouts: dbRes.rows})
-    })
-})
+app.use(expressLayouts)
 
-app.get('/workout', (req, res) => {
-    res.render('show')
-})
+app.use('/', indexRouter)
+app.use('/workouts', workoutsRouter)
+
+
+
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)

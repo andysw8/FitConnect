@@ -1,0 +1,11 @@
+
+
+
+<h2><a href="/workouts/new">Upload a Workout</a> </h2>
+
+<% for(let workout of workouts) {%>
+    <img src="<%= workout.image_url%>" alt="">
+    <a href="/workouts/<%= workout.id%>">
+        <%= workout.title %>
+    </a>
+<%}%>

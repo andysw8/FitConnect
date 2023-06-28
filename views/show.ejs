@@ -1,0 +1,9 @@
+
+
+<h2>Workout Program: <%= workout.title %></h2>
+<img src="<%= workout.image_url%>" alt="">
+<form action="/workouts/<%= workout.id%>" method="post">
+<input type="hidden" value="delete" name="_method">
+<button>Delete</button>
+</form>
+<a href="/workouts/<%= workout.id %>/edit">Edit Workout</a>

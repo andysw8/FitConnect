@@ -1,0 +1,10 @@
+<h2>Edit Your Workout</h2>
+
+<form action="/workouts/<%= workout.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <label for="">Workout Title</label>
+    <input type="text" name="title" value="<%= workout.title %>">
+    <label for="">Image</label>
+    <input type="url" name="image_url" value="<%= workout.image_url%>">
+    <button>Update Workout</button>
+</form>
