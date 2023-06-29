@@ -6,9 +6,9 @@ function setUser (req, res, next) {
         return
     }
 
-    let sql = `SELECT * FROM users WHERE id = ${req.session.userId};`
+    let sql = `SELECT * FROM users WHERE id = $1;`
 
-    db.query(sql, (err, dbRes) => {
+    db.query(sql, [req.session.userId], (err, dbRes) => {
         if(err) {
             console.log(err)
         } else {

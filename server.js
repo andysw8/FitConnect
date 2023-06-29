@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index')
 const workoutsRouter = require('./routes/workouts')
 const usersRouter = require('./routes/users')
 const loginRouter = require('./routes/login')
+const logoutRouter = require('./routes/logout')
 const setUser = require('./middlewares/set_user')
 
 
@@ -39,15 +40,18 @@ app.use(
     })
 )
 app.use(setUser)
+
 app.use(expressLayouts)
+
 app.use('/login', loginRouter)
+
 app.use('/', indexRouter)
+
 app.use('/workouts', workoutsRouter)
+
 app.use('/users', usersRouter)
 
-
-
-
+app.use('/logout', logoutRouter)
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)

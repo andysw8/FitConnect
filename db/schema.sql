@@ -14,6 +14,11 @@ CREATE TABLE workouts (
     user_id INTEGER REFERENCES users(id)
 );
 
+SELECT * 
+FROM workouts
+JOIN users ON workouts.user_Id = users.Id; 
+
+
 INSERT INTO workouts (title, image_url)
 VALUES ('The Murph', 'https://murphsealmuseum.org/wp-content/uploads/2021/03/MurphWOD.jpg');
 

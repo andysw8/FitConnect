@@ -1,5 +1,6 @@
 <h2>Upload Your Workout</h2>
 <form action="/workouts" method="post">
+    <input type="hidden" name="user_id" value="<%= user.id %>">
     <label for="">Workout Title</label>
     <input type="text" name="title">
     <label for="">Image</label>

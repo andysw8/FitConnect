@@ -38,9 +38,6 @@ router.post('/', (req, res) => {
   })
 
 
-router.delete('/logout', (req, res) => {
-    req.session.userId = undefined
-    res.redirect('/')
-})
+
 
 module.exports = router

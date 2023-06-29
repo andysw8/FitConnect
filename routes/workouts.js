@@ -30,12 +30,17 @@ router.get('/:id', (req, res) => {
 router.post('/', ensureLoggedIn, (req, res) => {
     let title = req.body.title
     let imageUrl = req.body.image_url
+    let userId = req.body.user_id
+    console.log('form data', { title, imageUrl, userId})
     const sql = `
-    INSERT INTO workouts (title, image_url)
-    VALUES ($1, $2)
+    INSERT INTO workouts (title, image_url, user_id)
+    VALUES ($1, $2, $3)
     returning id;`
 
-    db.query(sql, [title, imageUrl], (err, dbRes) =>{
+    db.query(sql, [title, imageUrl, userId], (err, dbRes) =>{
+        if(err){
+            console.log(err)
+        }
         res.redirect(`/workouts/${dbRes.rows[0].id}`)
     })
 })

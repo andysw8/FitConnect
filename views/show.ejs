@@ -1,7 +1,9 @@
 <h2>Workout Program: <%= workout.title %></h2>
 <img src="<%= workout.image_url%>" alt="">
 
-<% if(userId && workout.userId === userId) { %>
+<% console.log('userId:', userId); console.log('workout.userId:', workout.user_id); %>
+
+<% if(userId && workout.user_id === userId) { %>
     <form action="/workouts/<%= workout.id %>" method="post">
         <input type="hidden" name="_method" value="delete">
         <button>Delete</button>
