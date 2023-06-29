@@ -1,9 +1,14 @@
-
-
 <h2>Workout Program: <%= workout.title %></h2>
 <img src="<%= workout.image_url%>" alt="">
-<form action="/workouts/<%= workout.id%>" method="post">
-<input type="hidden" value="delete" name="_method">
-<button>Delete</button>
+
+<% if(userId && workout.userId === userId) { %>
+    <form action="/workouts/<%= workout.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>Delete</button>
+    </form>
+    <a href="/workouts/<%= workout.id %>/edit">Edit Workout</a>
+    <% } else if (!userId) { %>
+<form action="/login" method="post">
+<button>login</button>
 </form>
-<a href="/workouts/<%= workout.id %>/edit">Edit Workout</a>
+<% } %>

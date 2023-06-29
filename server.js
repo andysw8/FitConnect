@@ -10,6 +10,9 @@ const port = process.env.PORT || 3000
 const app = express()
 const indexRouter = require('./routes/index')
 const workoutsRouter = require('./routes/workouts')
+const usersRouter = require('./routes/users')
+const loginRouter = require('./routes/login')
+const setUser = require('./middlewares/set_user')
 
 
 app.set("view engine", "ejs")
@@ -35,11 +38,13 @@ app.use(
         saveUninitialized: true, 
     })
 )
-
+app.use(setUser)
 app.use(expressLayouts)
-
+app.use('/login', loginRouter)
 app.use('/', indexRouter)
 app.use('/workouts', workoutsRouter)
+app.use('/users', usersRouter)
+
 
 
 

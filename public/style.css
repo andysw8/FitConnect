@@ -1,6 +1,18 @@
-* {
-    box-sizing: border-box;
+body{
+    font-family: 'Russo One', sans-serif;
+    background:  #ffffff;
+    margin: 0;
+    padding: 0  
 }
-img {
-    width: 200px;
+.ui-workout{
+    background-color: rgb(198, 198, 198);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow:hidden;
+    padding: 10px;
+}
+.ui-workout img {
+    width: 800px;
+    height: auto;
+    border-radius: 5px;
 }

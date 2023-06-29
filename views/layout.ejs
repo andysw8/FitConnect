@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitConnect</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <header><a href="/">Home</a></header>
-    <h1>FitConnect</h1>
-    <nav>
-        <a href="/">Home</a>
-        <a href="">Login</a>
-        <a href="">Sign Up</a>
-    </nav>
-    <%- body %>
-    <footer>&copy; FitConnect 2023</footer>
+    <% if(userId) {%>
+        <p>logged in as <%= user.username%>
+        </p>
+
+        <form action="/logout" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button>Logout</button>
+        </form>
+        <header>
+            <nav>
+                <% } else {%>
+                    <a href="/login">Login</a>
+                    <a href="/users/signup">Sign Up</a>
+                    <%}%>
+                        <a href="/">Home</a>
+        </header>
+        <h1>FitConnect</h1>
+
+
+
+
+        </nav>
+        <%- body %>
+            <footer>&copy; FitConnect 2023</footer>
 </body>
+
 </html>

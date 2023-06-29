@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const db = require('../db/index')
+const ensureLoggedIn = require('../middlewares/ensure_logged_in')
+
 
 router.get('/new', (req, res) => {
     res.render('new')
@@ -25,7 +27,7 @@ router.get('/:id', (req, res) => {
 
 
 
-router.post('/', (req, res) => {
+router.post('/', ensureLoggedIn, (req, res) => {
     let title = req.body.title
     let imageUrl = req.body.image_url
     const sql = `
@@ -38,7 +40,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', ensureLoggedIn, (req, res) => {
     let sql = `
     SELECT * FROM workouts WHERE id = ${req.params.id}; 
     `
@@ -48,7 +50,7 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureLoggedIn, (req, res) => {
     const sql =`
     UPDATE workouts
     SET title = $1,
@@ -61,7 +63,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) =>{
+router.delete('/:id', ensureLoggedIn, (req, res) =>{
     db.query(`DELETE FROM workouts WHERE id = $1;`, [req.params.id], (err, dbRes) => {
         res.redirect('/')
     })
