@@ -14,8 +14,12 @@ FitConnect is a network where people can come together to share their workout pr
 -   PostgreSQL
 -   CSS
 
+## Wireframe
+Draft of my initial wireframe
+![Wireframe](/images/wireframe.jpg)
+
 ## Getting Started
-View it here [https://fitconnect.onrender.com] (https://fitconnect.onrender.com)
+View it here ![link](https://fitconnect.onrender.com)
 
 ## Next Steps
 -   Include comments and reviews
