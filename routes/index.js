@@ -6,7 +6,10 @@ const pg = require('pg')
 
 router.get('/', (req, res) => {
 
-    db.query(`SELECT * FROM workouts;`, (err, dbRes) => {
+    db.query(`
+    SELECT workouts.id, workouts.title, workouts.image_url, workouts.difficulty, workouts.user_id, users.username
+    FROM workouts
+    JOIN users ON workouts.user_id = users.id;`, (err, dbRes) => {
 
         if (err) {
             console.log(err)

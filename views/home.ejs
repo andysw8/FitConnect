@@ -1,14 +1,19 @@
 
-<div class="container">
+<div class="ui-card">
 <% if(userId) { %>
-<h2><a href="/workouts/new">Upload a Workout</a> </h2>
+<button class="upload"><a href="/workouts/new">Upload a Workout</a></button>
 <% } %>
 <% for(let workout of workouts) {%>
     <div class="ui-workout">
-    <img src="<%= workout.image_url%>" alt="">
-    <a href="/workouts/<%= workout.id%>">
-        <%= workout.title %>
-    </a>
+        <a href="/workouts/<%= workout.id%>">
+            <%= workout.title %>
+        </a>
+        
+        <p class="post-user">Posted By: <%= workout.username %></p>
+        
+        <p>Difficulty: <%= workout.difficulty%></p>
+        <img src="<%= workout.image_url%>" alt="">
+        
 </div>
 <%}%>
 </div>

@@ -18,6 +18,12 @@ SELECT *
 FROM workouts
 JOIN users ON workouts.user_Id = users.Id; 
 
+SELECT *
+FROM workouts
+JOIN users ON workouts.user_id = users.id;
+
+ALTER TABLE workouts add column difficulty TEXT;
+
 
 INSERT INTO workouts (title, image_url)
 VALUES ('The Murph', 'https://murphsealmuseum.org/wp-content/uploads/2021/03/MurphWOD.jpg');

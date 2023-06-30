@@ -1,16 +1,19 @@
-<h2>Workout Program: <%= workout.title %></h2>
-<img src="<%= workout.image_url%>" alt="">
-
-<% console.log('userId:', userId); console.log('workout.userId:', workout.user_id); %>
-
-<% if(userId && workout.user_id === userId) { %>
-    <form action="/workouts/<%= workout.id %>" method="post">
+<div class="show-container">
+    <h2 class="workout-title">Workout Program: <%= workout.title %></h2>
+    <h3 class="workout-info">Posted by: <%= workout.username %></h3>
+    <h3 class="workout-info">Workout Difficulty: <%= workout.difficulty %></h3>
+    <img class="workout-image" src="<%= workout.image_url %>" alt="">
+    
+    <% if (userId && workout.user_id === userId) { %>
+      <form action="/workouts/<%= workout.id %>" method="post">
         <input type="hidden" name="_method" value="delete">
-        <button>Delete</button>
-    </form>
-    <a href="/workouts/<%= workout.id %>/edit">Edit Workout</a>
+        <button class="delete-button">Delete</button>
+      </form>
+      <a href="/workouts/<%= workout.id %>/edit" class="edit-link">Edit Workout</a>
     <% } else if (!userId) { %>
-<form action="/login" method="post">
-<button>login</button>
-</form>
-<% } %>
+      <form action="/login" method="post">
+        <button class="login-button">Login</button>
+      </form>
+    <% } %>
+  </div>
+  
