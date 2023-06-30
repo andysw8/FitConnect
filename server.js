@@ -20,7 +20,7 @@ app.set("view engine", "ejs")
 
 app.use(express.static('public'))
 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -33,10 +33,10 @@ app.use(methodOverride(function (req, res) {
 
 app.use(
     session({
-        cookie: {maxAge: 100 * 60 * 60 *24 * 3},
+        cookie: { maxAge: 100 * 60 * 60 * 24 * 3 },
         secret: process.env.SESSION_SECRET || 'mistyrose',
-        resave: false, 
-        saveUninitialized: true, 
+        resave: false,
+        saveUninitialized: true,
     })
 )
 app.use(setUser)
